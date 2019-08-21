@@ -7,31 +7,36 @@ const Wrapper = styled.div`
 `
 
 const Line = styled.div`
-    position: absolute;
+    position: relative;
     width: 10px;
     height: 600px;
     margin-left: 20px;
     background-color: gray;
-`
+` 
 const Arrow = styled.div`
-    position: absolute; 
+    position: relative; 
     left: 40px; 
     width: 70px;
     height: 5px;
+    top: ${props => props.position ? props.position : 0}px;
     background-color: black;
 `
 
 class TimeUI extends React.Component {
     constructor(props){
         super(props)
-        this.state = { seconds: 0 };
+        this.state = { 
+            seconds: 0,
+            position: 0,
+         };
     }
 
     tick() {
         this.setState(prevState => ({
-          seconds: prevState.seconds + 1
+          seconds: prevState.seconds + 1,
+          position: prevState.seconds * 0.0069444
         }));
-        console.log(this.state.seconds)
+
       }
 
     componentDidMount() {
@@ -51,7 +56,7 @@ class TimeUI extends React.Component {
     render() {
         return (
             <Wrapper>
-                <Arrow />
+                <Arrow position={this.state.position}/>
                 <Line />
             </Wrapper>
         )

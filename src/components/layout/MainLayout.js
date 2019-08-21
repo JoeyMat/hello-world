@@ -25,6 +25,8 @@ class MainLayout extends React.Component{
     }
 
     render(){
+        console.log(this.props.children)
+
         return (
             <Main>
                 <Menu menuOpen={this.state.menuOpen} menuHandler={this.menuHandler} />

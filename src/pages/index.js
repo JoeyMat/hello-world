@@ -4,8 +4,12 @@ import LandingSection from '../components/sections/LandingSection'
 import WorkSection from "../components/sections/WorkSection"
 
 export default () => (
+    <div>
     <MainLayout>
         <LandingSection />
-        <WorkSection />
+
     </MainLayout>
+    <WorkSection />
+
+    </div>
   )
