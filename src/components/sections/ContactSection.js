@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Section from '../Molecules/Section'
 import bgImage from '../../../public/assets/images/stoelflat.jpg'
-import downArrow from '../../../public/assets/images/arrowDown.svg'
 import Header from '../Molecules/Header'
 import { connect } from 'react-redux'
+import ContactForm from '../Molecules/ContactForm'
 
 const CenterContent = styled.div`
     display: flex;
@@ -21,20 +21,8 @@ const HeaderText = styled.h1`
     font-weight: normal;
     letter-spacing: -5px;
 `
-const Img = styled.img`
-    position:absolute; 
-    bottom: 1%;
-    padding: 10px;
-    align-self: center;
-    z-index: 10;
-    opacity: 0.8;
 
-    :hover {
-        cursor: pointer;
-    }
-`
-
-class LandingSection extends React.Component {
+class ContactSection extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -42,12 +30,8 @@ class LandingSection extends React.Component {
     render() {
         return (
             <Section image={bgImage} darker={true}>
-                <Header />
                 <CenterContent>
-                    <HeaderText>
-                        I'll probably like you.
-                    </HeaderText>
-                    <Img src={downArrow} onClick={() => this.props.scrollHandler("landing")} />
+                    <ContactForm />
                 </CenterContent>
             </Section>
         )
@@ -61,4 +45,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, null)(LandingSection)
+export default connect(mapStateToProps, null)(ContactSection)

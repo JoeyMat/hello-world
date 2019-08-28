@@ -1,0 +1,1 @@
+export const menuClickCounter = state => state.menuClick

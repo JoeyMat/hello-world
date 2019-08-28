@@ -2,6 +2,13 @@ import React from "react"
 import styled from 'styled-components'
 import '../../global.css'
 import Menu from '../Molecules/Menu'
+import { connect } from 'react-redux'
+import LandingSection from '../sections/LandingSection'
+import WorkSection from "../sections/WorkSection"
+import AboutSection from '../sections/AboutSection'
+import ContactSection from '../sections/ContactSection'
+import { Media } from 'react-breakpoints'
+import scrollToComponent from 'react-scroll-to-component';
 
 const Main = styled.div`
     background-color: red;
@@ -16,6 +23,7 @@ class MainLayout extends React.Component{
         this.state = {
             menuOpen: false
         }
+        this.myRef = React.createRef();
     }
 
     menuHandler = () => {
@@ -24,18 +32,31 @@ class MainLayout extends React.Component{
        }))
     }
 
-    render(){
-        console.log(this.props.children)
+    scrollHandler = (nameSection) => {
+       console.log(nameSection)
+        scrollToComponent(this.myRef.current, {
+            duration: 2000,
+            ease: "inOutExpo"
+        });
+    }
 
+    render(){
         return (
             <Main>
-                <Menu menuOpen={this.state.menuOpen} menuHandler={this.menuHandler} />
-                {this.props.children && this.props.children.map(child => {
-                    return React.cloneElement(child, null, null, this.menuHandler)
-                })}
+                <Menu />
+                <LandingSection scrollHandler={this.scrollHandler} />
+                <WorkSection className='work' ref={this.myRef} scrollHandler={this.scrollHandler} />
+                <AboutSection />
+                <Media>
+                    {({ breakpoints, currentBreakpoint }) => {
+                        if (breakpoints[currentBreakpoint] < breakpoints.desktop) {
+                            return <ContactSection /> 
+                        }
+                    }}
+                </Media>
             </Main>
         )
     }
 }
 
-export default MainLayout
+export default connect(null, null)(MainLayout)

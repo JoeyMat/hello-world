@@ -48,7 +48,7 @@ class Menu extends React.Component {
         return (
             <MenuWrapper menuOpen={this.props.menuOpen}>
                 <MenuHeader>
-                <Hamburger menuHandler={this.props.menuHandler}/>
+                <Hamburger />
                     Menu
                 </MenuHeader>
                 <Item>
@@ -64,5 +64,6 @@ class Menu extends React.Component {
         )
     }
 }
+
 
 export default Menu
