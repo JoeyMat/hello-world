@@ -28,6 +28,7 @@ const Img = styled.img`
     align-self: center;
     z-index: 10;
     opacity: 0.8;
+    z-index: 32;
 
     :hover {
         cursor: pointer;
@@ -48,8 +49,8 @@ class LandingSection extends React.Component {
                         I'll probably like you.
                     </HeaderText>
                     <Img src={downArrow} onClick={() => this.props.scrollHandler("landing")} />
-                </CenterContent>
-            </Section>
+                </CenterContent >
+            </Section >
         )
     }
 }

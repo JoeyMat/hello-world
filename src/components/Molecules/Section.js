@@ -15,7 +15,7 @@ const Background = styled.div`
     background-image: ${props => props.image ? `url(${props.image})` : 'null'};
     background-color: ${props => props.bgcolor ? props.bgcolor : colors.sectionBackground};
     z-index: 2;
-    opacity: ${props => props.darker ? 0.5: 1}
+    opacity: ${props => props.darker ? 0.5 : 1}
 `
 
 export default ({ children, bg, image, darker, bgcolor }) => (

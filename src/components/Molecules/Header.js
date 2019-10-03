@@ -10,14 +10,14 @@ const Wrapper = styled.div`
 `
 
 class Header extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
-    
+
     render() {
         return (
             <Wrapper>
-                <Hamburger menuHandler={this.props.menuHandler}/>
+                <Hamburger menuHandler={this.props.menuHandler} />
             </Wrapper>
         )
     }

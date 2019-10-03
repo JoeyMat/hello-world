@@ -2,8 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import cut1 from '../../../public/assets/images/WallCuts/cut1.jpg'
 import cut2 from '../../../public/assets/images/WallCuts/cut2.jpg'
-import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
+import test from '../../../public/assets/images/content3/terwijdelines.jpg'
+import AwesomeSlider from 'react-awesome-slider'
+import 'react-awesome-slider/dist/styles.css'
+
+import { category1 } from '../../helpers/images'
+import { category2 } from '../../helpers/images'
+import { category3 } from '../../helpers/images'
 
 const Wrapper = styled.div`
     width: 70%;
@@ -36,32 +41,46 @@ class Portfolio extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.currentCategory !== prevProps.currentCategory)
-        {
+        if (this.props.currentCategory !== prevProps.currentCategory) {
             this.changeContent()
         }
     }
 
-    changeContent(){
-        if (this.props.currentCategory &&  this.props.currentCategory === 1) {
-           this.setState({ content: cut1})
+    changeContent() {
+        if (this.props.currentCategory && this.props.currentCategory === 1) {
+            this.setState({ content: { category1 } })
+        } else if (this.props.currentCategory && this.props.currentCategory === 2) {
+            this.setState({ content: { category2 } })
         } else {
-            this.setState({ content: cut2})
+            console.log(category3)
+            this.setState({ content: { category3 } })
         }
     }
 
+
     render() {
-        return(
+        console.log(test)
+        {
+            this.state.content && this.state.content['category' + this.props.currentCategory] && this.state.content['category' + this.props.currentCategory].map((image) => {
+                console.log(<Img src={image.src} />)
+            })
+        }
+        return (
             <Wrapper>
                 {this.state.content !== null &&
                     <AwesomeSlider >
-                    <div>
-                        <Img src={this.state.content} />
-                    </div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                </AwesomeSlider>
+                        {
+                            this.state.content && this.state.content['category' + this.props.currentCategory] && this.state.content['category' + this.props.currentCategory].map((image) => {
+                                console.log(require(image.src))
+                                return (
+                                    <Img src={require(image.src)} />
+                                )
+                            })
+                        }
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                    </AwesomeSlider>
                 }
             </Wrapper>
         )
