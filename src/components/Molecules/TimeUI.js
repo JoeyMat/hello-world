@@ -56,6 +56,7 @@ class TimeUI extends React.Component {
         this.state = { 
             seconds: 0,
             position: 0,
+            currentCategory: 1
          };
     }
 
@@ -63,11 +64,23 @@ class TimeUI extends React.Component {
         this.setState(prevState => ({
           seconds: prevState.seconds + 1,
         }), () => {
-            this.setState(prevState => ({
+            this.setState({
                 position: (((this.state.seconds / 864) / 100) * 90),
-              }))
+              })
+              if (this.state.seconds < 35000 && this.state.currentCategory !== 1){
+                this.setState({ 
+                    currentCategory: 1, 
+                },() => {
+                    this.props.changeCategory(1)
+                })
+            } else if (this.state.seconds >= 35000 && this.state.currentCategory !== 2) {
+                this.setState({ 
+                    currentCategory: 2, 
+                },() => {
+                    this.props.changeCategory(2)
+                })
+            }
         });
-        
       }
 
     componentDidMount() {

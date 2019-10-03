@@ -35,15 +35,28 @@ const Wrapper = styled.div`
 class WorkSection extends React.Component {
     constructor(props) {    
         super(props)
+
+        this.state = {
+            category: 1,
+        }
+        this.changeCategory = this.changeCategory.bind(this)
+    }
+
+    changeCategory(currentCategory) {
+        if (currentCategory) {
+            this.setState({
+                category: currentCategory,
+              })
+        }
     }
 
     render() {
         return (
             <Section>
                 <Wrapper>
-                    <TimeUI />
+                    <TimeUI changeCategory={this.changeCategory} />
                     <WorkWrapper>
-                        <Portfolio />
+                        <Portfolio currentCategory={this.state.category}/>
                         {/* <Img src={downArrow} onClick={() => this.props.scrollHandler("work")} /> */}
                     </WorkWrapper>
                 </Wrapper>
